@@ -20,8 +20,10 @@ pipeline {
     }
     stage('deploy'){
       when {branch 'master'}
-      steps {
-	sh 'java -jar target/*.jar &'
-    }
+        steps {
+	  sh 'java -jar target/*.jar &'
+        }
   }
 }
+}
+
