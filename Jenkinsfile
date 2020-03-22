@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''./mvnw clean compile'''
+        sh './mvnw clean compile'
       }
     }
 
@@ -15,16 +15,9 @@ pipeline {
 
     stage('package') {
       steps {
-        sh './mvnw package'
+        sh './mvnw install'
       }
     }
 
   }
-  post {
-    failure {
-      sh "git bisect start ${BROKEN} ${STABLE}"
-      sh 'git bisect run mvn clean test'
-      sh 'git bisect reset'
-    }
-
-  }
+}
