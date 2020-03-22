@@ -18,6 +18,10 @@ pipeline {
         sh './mvnw install'
       }
     }
-
+    stage('deploy'){
+      when {branch 'master'}
+      steps {
+	sh 'java -jar target/*.jar &'
+    }
   }
 }
